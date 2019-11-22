@@ -1,0 +1,83 @@
+#include<stdio.h>
+
+// Método usado para imprimir os valores em ordem
+void Imprime_Ordem(int *input){
+
+  printf("\nTodos valores na ordem que foram informados: ");
+
+  for(int i=0;i < 11;i++){
+    if(input[i] == -1){
+      break;
+    }
+    else{
+      printf(" %d", input[i]);
+    }
+  }
+}
+
+void Imprime_Inverso(int *input, int i){
+  for(int j=i;j >= 0;j--){
+      if(input[j] == -1){
+        continue;
+      }
+      else{
+        printf(" %d", input[j]);
+      }
+  }
+  }
+
+// Método para informar os valores acima da média
+void Maior_Media(int *input, int media, int i){
+  int temp[10];
+  int qtdeValores = 0;
+  int k = 0;
+  for(int j=0; j<i; j++){
+      if(input[j] > media){
+          temp[k] = input[j];
+          qtdeValores = qtdeValores + 1;
+          k++;
+      }
+      else{
+          continue;
+      }
+    }
+  printf("\nQuantidade de valores acima da média: %d (", qtdeValores);
+
+  // Imprimir elementos acima da média
+  for(int a=0;a < k;a++){
+    printf("%d, ", temp[a]);
+  }
+  
+  // Gambiarra ?!
+  printf(")");
+}
+
+int main(){
+    int *input;
+    int i = 0;
+    int soma = 0;
+    float media = 0;
+
+  //Usuário digita até 11 elementos ou até (-1).
+    for(i = 0; i < 11; i++){
+        printf("Digite um valor: ");
+        scanf("%d", &input[i]);
+        if(input[i] == -1){
+            break;
+        }
+        else{
+            soma = soma + input[i];
+            continue;
+        }
+    }
+    media = soma/i;
+
+    // Espaço para os prints.
+    printf("\nQuantidade de valores lidos: %d\n", i);
+    Imprime_Ordem(input);
+    printf("\nTodos valores na ordem inversa que foram informados: ");
+    Imprime_Inverso(input, i);
+    printf("\nSoma dos valores: %d", soma);
+    printf("\nMedia dos valores: %2.f", media);
+    Maior_Media(input, media, i);
+}
